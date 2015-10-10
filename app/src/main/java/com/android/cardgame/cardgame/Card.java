@@ -28,7 +28,7 @@ public class Card extends Container {
         label.setX((getWidth()-bounds.width()) / 2 );
         label.setY((getHeight()+bounds.height()) / 2 );
 
-        System.out.println(((getWidth()-bounds.width()) / 2)+"-"+((getHeight()+bounds.height()) / 2));
+//        System.out.println(((getWidth()-bounds.width()) / 2)+"-"+((getHeight()+bounds.height()) / 2));
 
         addChild(label);
         showAll();

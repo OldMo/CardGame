@@ -25,9 +25,9 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback {
         Canvas canvas = getHolder().lockCanvas();
         if(canvas != null){
             canvas.drawColor(Color.rgb(187,173,160));
-            root.draw(canvas);
+             root.draw(canvas);
 
-            getHolder().unlockCanvasAndPost(canvas);
+            getHolder().unlockCanvasAndPost(canvas);//取消锁定并更新画布
         }
     }
 

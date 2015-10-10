@@ -52,7 +52,6 @@ public class MainGameView extends GameView {
                     if(cards.size() <= 0){
                         endTime = System.currentTimeMillis();
                         costTime = (endTime - startTime) / 1000.0;
-//                       // Toast.makeText(getContext(),"chenggong",Toast.LENGTH_SHORT).show();
                         new AlertDialog.Builder(getContext()).setTitle("恭喜通关，用时:"+costTime+"s，出错:"+errorTimes+"次！现在进入下一关吗？")
                                 .setIcon(android.R.drawable.ic_dialog_info)
                                 .setPositiveButton("继续征战", new DialogInterface.OnClickListener() {
@@ -68,10 +67,8 @@ public class MainGameView extends GameView {
                                     @Override
                                     public void onClick(DialogInterface dialog, int which) {
                                         start(level);
-                                        //Toast.makeText(getContext(),"返回当前关数",Toast.LENGTH_SHORT).show();
                                     }
                                 }).show();
-                       //start();
                     }
                     draw();
                 }else{
@@ -101,9 +98,12 @@ public class MainGameView extends GameView {
     public void getAllPoint(){
         allPoints.clear();
 
-        for(int i = 0; i < ROWS; i++){
-            for(int j = 0; j < COLUMNS; j++){
-                allPoints.add(new PointF(i * (Config.WIDTH / COLUMNS),j * (Config.HEIGHT / ROWS)));
+        for(int i = 0; i < COLUMNS; i++){
+            for(int j = 0; j < ROWS; j++){
+                float x = i * ((Config.WIDTH) / COLUMNS);
+                float y = j * ((Config.HEIGHT - 40) / (ROWS+1));
+                allPoints.add(new PointF(x,y));
+//                System.out.println("x:"+x+"-y:"+y);
             }
         }
     }
@@ -113,10 +113,13 @@ public class MainGameView extends GameView {
         Card c;
         for(int i=1;i<=cardSize;i++){
             p = allPoints.remove((int)(Math.random()*allPoints.size()));
-            c = new Card(i,Config.WIDTH / 6 - 5,Config.HEIGHT / 9 - 5);
+
+            c = new Card(i,Config.WIDTH / COLUMNS - 5 ,(Config.HEIGHT -40) / (ROWS+1) - 5);
             getRoot().addChild(c);
             c.setX(p.x);
             c.setY(p.y);
+//            System.out.println("Config.WIDTH,Config.Height:" + "( " + Config.WIDTH + "," +Config.HEIGHT +")" );
+//            System.out.println("card" + i + ":(" + p.x + "," + p.y + ")");
             cards.add(c);
         }
         draw();

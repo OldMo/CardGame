@@ -2,6 +2,7 @@ package com.android.cardgame.cardgame;
 
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
+import android.util.DisplayMetrics;
 import android.view.Display;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -13,11 +14,10 @@ public class MainActivity extends ActionBarActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-        WindowManager windowManager = getWindowManager();
-        Display display = windowManager.getDefaultDisplay();
-        Config.WIDTH = display.getWidth();
-        Config.HEIGHT = display.getHeight();
+        DisplayMetrics dm = new DisplayMetrics();
+        getWindowManager().getDefaultDisplay().getMetrics(dm);
+        Config.WIDTH = dm.widthPixels;
+        Config.HEIGHT = dm.heightPixels;
         setContentView(new MainGameView(this));
     }
 
